@@ -52,9 +52,9 @@ function ClassicTabLayout() {
         headerShown: true,
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: isIOS ? 'transparent' : colors.background,
-          borderTopWidth: isWeb ? 1 : 0,
-          borderTopColor: colors.border,
+          backgroundColor: colors.card,
+          borderTopWidth: 1,
+          borderTopColor: 'rgba(224,231,255,0.08)',
           elevation: 0,
           ...(isWeb ? { height: 84 } : {}),
         },

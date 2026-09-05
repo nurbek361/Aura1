@@ -35,7 +35,8 @@ function RootLayoutNav() {
       <Stack.Screen name="achievements" options={{ presentation: 'card' }} />
       <Stack.Screen name="music" options={{ presentation: 'card', title: 'Музыка' }} />
       <Stack.Screen name="movies" options={{ presentation: 'card', title: 'Кино' }} />
-      <Stack.Screen name="movie/[id]" options={{ presentation: 'card', title: 'Фильм' }} />
+      <Stack.Screen name="movie/[id]" options={{ presentation: 'card', title: 'Фильм', headerShown: false }} />
+      <Stack.Screen name="movie/watch" options={{ presentation: 'fullScreenModal', headerShown: false }} />
     </Stack>
   );
 }

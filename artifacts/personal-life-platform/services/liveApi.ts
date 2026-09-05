@@ -6,7 +6,8 @@ export type BookResult = { title:string; authors:string[]; year?:number; coverId
 export type ShowResult = { id:number; name:string; language?:string; premiered?:string; url:string; image?:string };
 export type MusicResult = { track:string; artist:string; album:string; artwork?:string; preview?:string; url:string; collectionId?:number; trackId?:number };
 export type MovieResult = { id:number; title:string; overview:string; poster?:string; backdrop?:string; releaseDate?:string; rating:number; genreIds:number[]; originalLanguage?:string; tmdbUrl:string; trailerKey?:string; trailerName?:string };
-export type MovieDetails = MovieResult & { runtime?:number; genres:string[]; homepage?:string; cast:string[]; trailerUrl?:string };
+export type MovieDetails = MovieResult & { runtime?:number; genres:string[]; homepage?:string; cast:string[]; trailerUrl?:string; };
+export type MovieList = { title:string; results:MovieResult[] };
 export type NewsResult = { title:string; url:string; score:number; time:number };
 
 const json = async <T>(url:string, init?:RequestInit):Promise<T> => {
@@ -86,6 +87,21 @@ export async function searchMovies(query:string):Promise<MovieResult[]> {
     backdrop:x.backdrop_path ? `https://image.tmdb.org/t/p/w780${x.backdrop_path}` : undefined,releaseDate:x.release_date,
     rating:Number(x.vote_average ?? 0),genreIds:x.genre_ids ?? [],originalLanguage:x.original_language,tmdbUrl:`https://www.themoviedb.org/movie/${x.id}`
   }));
+}
+
+export async function getPopularMovies(page=1):Promise<MovieResult[]> {
+  const d:any = await tmdb(`/movie/popular?language=ru-RU&page=${page}`);
+  return (d.results ?? []).map((x:any)=>({
+    id:x.id,title:x.title,overview:x.overview ?? '',
+    poster:x.poster_path ? `https://image.tmdb.org/t/p/w500${x.poster_path}` : undefined,
+    backdrop:x.backdrop_path ? `https://image.tmdb.org/t/p/w780${x.backdrop_path}` : undefined,
+    releaseDate:x.release_date,rating:Number(x.vote_average ?? 0),genreIds:x.genre_ids ?? [],
+    originalLanguage:x.original_language,tmdbUrl:`https://www.themoviedb.org/movie/${x.id}`
+  }));
+}
+
+export function getMovieEmbedUrl(id:number|string) {
+  return `https://vidsrc.dev/embed/movie/${id}`;
 }
 
 export async function getMovieDetails(id:number):Promise<MovieDetails> {
