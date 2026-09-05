@@ -1,0 +1,14 @@
+{
+  "name": "personal-life-platform",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "dev": "pnpm --filter @workspace/personal-life-platform run dev"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Personal Life Platform",
+    "slug": "personal-life-platform",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "personal-life-platform",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.personallifeplatform.app"
+    },
+    "web": {
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "312dea57-2638-419e-9517-61b2277f9329"
+      }
+    }
+  }
+}
